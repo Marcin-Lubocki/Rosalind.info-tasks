@@ -16,26 +16,24 @@ Sample Output
 20 12 17 21
 """
 
-
 # input data from rosalind.info is storaged in "input.txt" file
+
+# the count_nucleotides function takes DNA sequence as an argument and returns nucleotide counts in order as follow [A, C, G, T]
+def count_nucleotides(dna):
+  nucleotides = [0, 0, 0, 0]
+  for nucleotide in dna:
+    if nucleotide == "A":
+      nucleotides[0] += 1
+    elif nucleotide == "C":
+      nucleotides[1] += 1
+    elif nucleotide == "G":
+      nucleotides[2] += 1
+    elif nucleotide == "T":
+      nucleotides[3] += 1
+  return(' '.join(map(str, nucleotides)))
+
 # "s" is the given DNA string
 f = open("input.txt", "r")
 s = f.readline()
 
-# the result will be assigned to "output" variable
-# the order of nucleotide counts is as follow [A, C, G, T]
-output = [0, 0, 0, 0]
-
-
-for nucleotide in s:
-  if nucleotide == "A":
-    output[0] += 1
-  elif nucleotide == "C":
-    output[1] += 1
-  elif nucleotide == "G":
-    output[2] += 1
-  elif nucleotide == "T":
-    output[3] += 1
-
-# print the result
-print(*output, sep=' ')
+print(count_nucleotides(s))
