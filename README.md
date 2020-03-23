@@ -1,2 +1,2 @@
 # Rosalind.info-tasks
-Repository contains my solutions to Rosalind.info bioinformatic problems
+The repository contains my solutions to rosalind.info bioinformatic problems
