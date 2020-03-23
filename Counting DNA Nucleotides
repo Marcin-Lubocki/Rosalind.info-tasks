@@ -1,0 +1,41 @@
+"""
+From Rosalind.info:
+
+Problem
+A string is simply an ordered collection of symbols selected from some alphabet and formed into a word; the length of a string is the number of symbols that it contains.
+
+An example of a length 21 DNA string (whose alphabet contains the symbols 'A', 'C', 'G', and 'T') is "ATGCTTCAGAAAGGTCTTACG."
+
+Given: A DNA string s of length at most 1000 nt.
+
+Return: Four integers (separated by spaces) counting the respective number of times that the symbols 'A', 'C', 'G', and 'T' occur in s.
+
+Sample Dataset
+AGCTTTTCATTCTGACTGCAACGGGCAATATGTCTCTGTGTGGATTAAAAAAAGAGTGTCTGATAGCAGC
+Sample Output
+20 12 17 21
+"""
+
+
+# input data from rosalind.info is storaged in "input.txt" file
+# "s" is the given DNA string
+f = open("input.txt", "r")
+s = f.readline()
+
+# the result will be assigned to "output" variable
+# the order of nucleotide counts is as follow [A, C, G, T]
+output = [0, 0, 0, 0]
+
+
+for nucleotide in s:
+  if nucleotide == "A":
+    output[0] += 1
+  elif nucleotide == "C":
+    output[1] += 1
+  elif nucleotide == "G":
+    output[2] += 1
+  elif nucleotide == "T":
+    output[3] += 1
+
+# print the result
+print(*output, sep=' ')
