@@ -30,15 +30,22 @@ Rosalind_0808
 60.919540
 """
 
-from Bio import SeqIO
+from Bio import SeqIO # to read FASTA records
 
 
+# the gc_content function takes DNA sequence as an argument and returns its GC content
 def gc_content(seq):
-  gc_content = (seq.count("G") + seq.count("C"))*100/len(seq)
+  r = 6 # decimal places to be rounded
+  gc_content = round((seq.count("G") + seq.count("C"))*100/len(seq), r)
   return(gc_content)
 
 
-for record in SeqIO.parse("input.fasta", "fasta"):
-    print(round(gc_content(record.seq), 6))
+# dict_gc_content storages all sequences ID's with its GC content
+dict_gc_content = {}
 
-# To be continued
+# reading FASTA file and storaging sequences ID's with its GC content calculated by gc_content function in dict_gc_content
+for record in SeqIO.parse("input.fasta", "fasta"):
+  dict_gc_content[record.id] = gc_content(record.seq)
+
+# printing ID of the sequence with the highest GC content from dict_gc_content
+print(max(dict_gc_content, key=dict_gc_content.get), max(dict_gc_content.values()))
