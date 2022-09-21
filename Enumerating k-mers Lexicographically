@@ -1,0 +1,40 @@
+"""
+Task from rosalind.info https://rosalind.info/problems/lexf/
+
+Given: A collection of at most 10 symbols defining an ordered alphabet, and a positive integer n (n≤10).
+
+Return: All strings of length n that can be formed from the alphabet, ordered lexicographically (use the standard order of symbols in the English alphabet).
+"""
+
+
+# input_wrapper handles input format from rosalind to generate python working variables
+def input_wrapper(input_name):
+  f = open(input_name, "r")
+  characters = "".join(f.readline().replace(' ', '').replace('\n', ''))
+  n = f.readline()
+  return(characters, n)
+
+# generate all possible words of length word_len from a set of available characters
+def generate_all_words(characters, word_len):
+  n = len(characters)
+  generate_all_words_rec(characters, "", n, word_len)
+
+
+def generate_all_words_rec(characters, prefix, n, word_len):
+  if (word_len == 0):
+    output_f.write(prefix + '\n')
+    return
+
+  for i in range(n):
+    newPrefix = prefix + characters[i]
+    generate_all_words_rec(characters, newPrefix, n, int(word_len)-1)
+
+
+
+input_name = "input.txt"
+output_name = 'output.txt'
+output_f = open(output_name, 'w')
+
+characters, word_len = input_wrapper(input_name)
+generate_all_words(characters, word_len)
+output_f.close()
