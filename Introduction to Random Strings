@@ -1,0 +1,36 @@
+'''
+Given: A DNA string s of length at most 100 bp and an array A containing at most 20 numbers between 0 and 1.
+
+Return: An array B having the same length as A in which B[k] represents the common logarithm of the probability that a random string constructed with the GC-content found in A[k]
+ will match s exactly.
+'''
+
+
+import math #for calculating logarhitms
+
+# opening of input file and transfering input data to variables seq and gc_list
+f = open('input.txt', 'r')
+f_lines = f.readlines()
+seq = f_lines[0].replace('\n', '')
+gc_list = f_lines[1].split(' ')
+
+# output list containing the common logarithms of probability
+output = []
+
+# iterating through different gc values from input file
+for gc in gc_list:
+  prob_log = 0
+  # iterating through the seq
+  for nuc in seq:
+    if nuc in ['C', 'G']:
+      # probability of finding G or C with GC content x is equal to x/2
+      prob_log += math.log10(float(gc)/2.0)
+    elif nuc in ['A', 'T']:
+      # probability of finding A or T with GC content x is equal to (1-x)/2
+      prob_log += math.log10((1-float(gc))/2.0)
+  output.append(round(prob_log, 3))
+
+print(' '.join(str(x) for x in output))
+
+
+f.close()
